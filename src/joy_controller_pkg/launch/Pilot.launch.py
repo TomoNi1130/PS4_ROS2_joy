@@ -16,6 +16,11 @@ def generate_launch_description():
             cmd=['rqt'],  # 実行するコマンド
             output='screen',  # コマンドの出力をターミナルに表示
         )
+      
+      jstest = ExecuteProcess(
+            cmd = ['jstest','/dev/input/js0'],
+            output = 'screen',
+      )
 
       controller_conection = ExecuteProcess(
             cmd=['ros2','run','joy_linux', 'joy_linux_node'],  # 実行するコマンド
@@ -24,6 +29,7 @@ def generate_launch_description():
       
       ld.add_action(controller_listener)
       ld.add_action(rqt)
+      ld.add_action(jstest)
       ld.add_action(controller_conection)
 
       return ld
