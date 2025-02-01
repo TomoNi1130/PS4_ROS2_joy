@@ -34,5 +34,12 @@
 
 ```bash
 # パッケージのインストール
+sudo apt install ros-jazzy-joy*
+
+#ワークスペース内で
 colcon build --packages-select ros2-jazzy-joy
+. install/setup
+ros2 launch {pkg_name} Pilot.launch.py
+#or
+ros2 launch {pkg_name} Robot.launch.py
 ```
