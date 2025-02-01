@@ -29,6 +29,7 @@ private:
         message.ly = msg->axes[1];
         message.rx = msg->axes[3];
         message.ry = msg->axes[4];
+
         message.buttons[0] = msg->buttons[0];
         message.buttons[1] = msg->buttons[1];
         message.buttons[2] = msg->buttons[2];
