@@ -24,6 +24,7 @@ private:
     {
         auto message = test_interface::msg::Controller();
         RCLCPP_INFO(this->get_logger(), "pub: '%d'", msg->buttons[0]);
+
         message.lx = msg->axes[0];
         message.ly = msg->axes[1];
         message.rx = msg->axes[3];
