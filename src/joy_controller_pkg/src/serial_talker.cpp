@@ -31,32 +31,36 @@ private:
         RCLCPP_INFO(this->get_logger(), "send:%s", message.c_str());
 
         for (size_t i = 0; i < msg->buttons.size(); i++)
+        {
             if (msg->buttons[i])
             {
                 std::string message = keys[i] + "pressing" + "|";
                 boost::asio::write(serial, buffer(message), ec);
             }
+        }
         if (ec)
         {
             RCLCPP_ERROR(this->get_logger(), "Error writing to serial port: %s", ec.message().c_str());
         }
     }
     std::array<std::string, 15> keys = {"cross", "circle", "triangle", "square", "L1", "R1", "L2", "R2", "SHARE", "OPTIONS", "PS", "left", "right", "up", "down"};
-    // keys[0] = "cross";
-    // keys[1] = "circle";
-    // keys[2] = "triangle";
-    // keys[3] = "square";
-    // keys[4] = "L1";
-    // keys[5] = "R1";
-    // keys[6] = "L2";
-    // keys[7] = "R2";
-    // keys[8] = "SHARE";
-    // keys[9] = "OPTIONS";
-    // keys[10] = "PS";
-    // keys[11] = "left";
-    // keys[12] = "right";
-    // keys[13] = "up";
-    // keys[14] = "down";
+    /*
+    keys[0] = "cross";
+    keys[1] = "circle";
+    keys[2] = "triangle";
+    keys[3] = "square";
+    keys[4] = "L1";
+    keys[5] = "R1";
+    keys[6] = "L2";
+    keys[7] = "R2";
+    keys[8] = "SHARE";
+    keys[9] = "OPTIONS";
+    keys[10] = "PS";
+    keys[11] = "left";
+    keys[12] = "right";
+    keys[13] = "up";
+    keys[14] = "down";
+    */
     rclcpp::Subscription<test_interface::msg::Controller>::SharedPtr subscription_;
 };
 
