@@ -3,4 +3,4 @@ float32 ly
 float32 rx
 float32 ry
 
-bool[13] buttons
+bool[15] buttons

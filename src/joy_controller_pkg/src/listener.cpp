@@ -39,8 +39,14 @@ private:
         message.buttons[8] = msg->buttons[8];
         message.buttons[9] = msg->buttons[9];
         message.buttons[10] = msg->buttons[10];
-        message.buttons[11] = msg->axes[2] - 1;
-        message.buttons[12] = msg->axes[5] - 1;
+        if (msg->axes[6] == 1)
+            message.buttons[11] = true;
+        if (msg->axes[6] == -1)
+            message.buttons[12] = true;
+        if (msg->axes[7] == 1)
+            message.buttons[13] = true;
+        if (msg->axes[7] == -11)
+            message.buttons[14] = true;
         this->publisher_->publish(message);
     }
     rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr subscription_;
