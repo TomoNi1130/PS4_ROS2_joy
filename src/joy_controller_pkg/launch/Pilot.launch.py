@@ -12,11 +12,18 @@ def generate_launch_description():
             namespace='controller_signal_load'
       )
 
-      ExecuteProcess(
+      rqt = ExecuteProcess(
+            cmd=['rqt'],  # 実行するコマンド
+            output='screen',  # コマンドの出力をターミナルに表示
+        )
+
+      controller_conection = ExecuteProcess(
             cmd=['ros2','run','joy_linux', 'joy_linux_node'],  # 実行するコマンド
             output='screen',  # コマンドの出力をターミナルに表示
         )
       
       ld.add_action(controller_listener)
+      ld.add_action(rqt)
+      ld.add_action(controller_conection)
 
       return ld

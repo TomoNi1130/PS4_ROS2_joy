@@ -3,6 +3,7 @@
 #include "test_interface/msg/controller.hpp"
 
 #include <boost/asio.hpp>
+#include <array>
 
 using namespace boost::asio;
 
@@ -25,16 +26,22 @@ private:
     {
         boost::system::error_code ec;
 
-        std::string message = std::to_string(msg->lx) + "/";
+        std::string message = std::to_string(msg->lx) + ":" + std::to_string(msg->ly) + ":" + std::to_string(msg->rx) + ":" + std::to_string(msg->xy) + "|";
         boost::asio::write(serial, buffer(message), ec);
         RCLCPP_INFO(this->get_logger(), "send:%s", message.c_str());
+
+        for (int i = 0; i > msg->buttons.size(); i++)
+            if (msg->buttons[i])
+            {
+                std::string message =
+            }
         if (ec)
         {
             RCLCPP_ERROR(this->get_logger(), "Error writing to serial port: %s", ec.message().c_str());
         }
     }
-
-    rclcpp::Subscription<test_interface::msg::Controller>::SharedPtr subscription_;
+    std::array<int, >
+        rclcpp::Subscription<test_interface::msg::Controller>::SharedPtr subscription_;
 };
 
 int main(int argc, char *argv[])
