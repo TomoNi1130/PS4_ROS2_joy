@@ -17,6 +17,8 @@
   <depend>sensor_msgs</depend>
   <depend>test_interface</depend>
 
+  <depend>ros2launch</depend>
+
   <export>
     <build_type>ament_cmake</build_type>
   </export>
