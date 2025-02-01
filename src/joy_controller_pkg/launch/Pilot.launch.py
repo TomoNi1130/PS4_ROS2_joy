@@ -11,12 +11,11 @@ def generate_launch_description():
             name='listener',
             namespace='controller_signal_load'
       )
-
       rqt = ExecuteProcess(
             cmd=['rqt'],  # 実行するコマンド
             output='screen',  # コマンドの出力をターミナルに表示
         )
-      
+
       jstest = ExecuteProcess(
             cmd = ['jstest','/dev/input/js0'],
             output = 'screen',
