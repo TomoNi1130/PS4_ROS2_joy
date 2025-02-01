@@ -48,7 +48,6 @@ private:
             RCLCPP_ERROR(this->get_logger(), "Error writing to serial port: %s", ec.message().c_str());
         }
     }
-
     std::array<std::string, 15> keys = {"cross", "circle", "triangle", "square", "L1", "R1", "L2", "R2", "SHARE", "OPTIONS", "PS", "left", "right", "up", "down"};
 
     /*
