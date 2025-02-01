@@ -1,6 +1,6 @@
-# ros2-jazzy-joy
+# ros2-controller-driver
 
-このパッケージは、PS4コントローラーを使用して、RobotとPilot間で通信を行うROS2パッケージです。Pilot側とRobot側に分かれており、各側に対応したLaunchファイルがある。
+このパッケージは、PS4コントローラー用にros2-jazzy-joyを使用して、RobotとPilot間で通信を行うROS2パッケージです。Pilot側とRobot側に分かれており、各側に対応したLaunchファイルがある。
 
 ## 概要
 
@@ -35,3 +35,4 @@
 ```bash
 # パッケージのインストール
 colcon build --packages-select ros2-jazzy-joy
+```
