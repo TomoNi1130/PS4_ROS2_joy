@@ -34,7 +34,12 @@ private:
         {
             if (msg->buttons[i])
             {
-                std::string message = keys[i] + "pressing" + "|";
+                std::string message = keys[i] + ":pressing" + "|";
+                boost::asio::write(serial, buffer(message), ec);
+            }
+            else if (!msg->buttons[i])
+            {
+                std::string message = keys[i] + ":no_pressing" + "|";
                 boost::asio::write(serial, buffer(message), ec);
             }
         }
@@ -44,7 +49,7 @@ private:
         }
     }
 
-    std::array<std::string, 15> kes = {"cross", "circle", "triangle", "square", "L1", "R1", "L2", "R2", "SHARE", "OPTIONS", "PS", "left", "right", "up", "down"};
+    std::array<std::string, 15> keys = {"cross", "circle", "triangle", "square", "L1", "R1", "L2", "R2", "SHARE", "OPTIONS", "PS", "left", "right", "up", "down"};
     /*
     keys[0] = "cross";
     keys[1] = "circle";

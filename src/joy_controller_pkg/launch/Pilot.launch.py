@@ -22,9 +22,11 @@ def generate_launch_description():
             output = 'screen',
       )
 
-      controller_conection = ExecuteProcess(
-            cmd=['ros2','run','joy_linux', 'joy_linux_node'],  # 実行するコマンド
-            output='screen',  # コマンドの出力をターミナルに表示
+      controller_conection = Node(
+            package='joy_linux',
+            executable='joy_linux_node',
+            name='joy_node',
+            namespace='controller_signal_load'
         )
       
       ld.add_action(controller_listener)
