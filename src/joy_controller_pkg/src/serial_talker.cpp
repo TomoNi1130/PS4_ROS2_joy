@@ -50,6 +50,7 @@ private:
     }
 
     std::array<std::string, 15> keys = {"cross", "circle", "triangle", "square", "L1", "R1", "L2", "R2", "SHARE", "OPTIONS", "PS", "left", "right", "up", "down"};
+
     /*
     keys[0] = "cross";
     keys[1] = "circle";
