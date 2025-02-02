@@ -1,6 +1,6 @@
-# ros2-controller-driver
+# PS4_ROS2_joy
 
-このパッケージは、PS4コントローラー用にros2-jazzy-joyを使用して、RobotとPilot間で通信を行うROS2パッケージです。Pilot側とRobot側に分かれており、各側に対応したLaunchファイルがある。
+このパッケージは、PS4コントローラー用にros2-jazzy-joyを使用して、コントローラーの信号を受け取るROS2パッケージです。Pilot側とRobot側に分かれており、各側に対応したLaunchファイルがある。
 
 ## 概要
 
@@ -11,6 +11,13 @@
   - Pilot側から送られたメッセージを受け取り、対応するシリアル信号を`/dev/ttyACM0`に送信する。
 
 ## シリアル対応表
+**stick**:
+シリアル信号 = "n;" + {L-x} + ":" + {L-y} + ":" + {R-x} + ":" + {R-y} + "|"
+
+-1 =< {LR-xy}　=< 1
+
+**buttons**:
+
 シリアル信号　= {シリアルメッセージ}　+ "pressing" + "|" or + "no_pressing" + "|"
 | 押されているボタン | シリアルメッセージ |
 |--------------------|--------------------|
@@ -39,7 +46,10 @@ sudo apt install ros-jazzy-joy*
 #ワークスペース内で
 colcon build --packages-select ros2-jazzy-joy
 . install/setup
+
+#コントローラーを接続（確認　ls /dev/input/js0 ）
 ros2 launch {pkg_name} Pilot.launch.py
-#or
+##or
+#シリアルを接続
 ros2 launch {pkg_name} Robot.launch.py
 ```
