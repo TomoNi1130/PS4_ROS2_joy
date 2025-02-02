@@ -11,14 +11,10 @@ def generate_launch_description():
             name='listener',
             namespace='controller_signal_load'
       )
-      rqt = ExecuteProcess(
-            cmd=['rqt'],  # 実行するコマンド
-            output='screen',  # コマンドの出力をターミナルに表示
-        )
 
       jstest = ExecuteProcess(
-            cmd = ['jstest','/dev/input/js0'],
-            output = 'screen',
+            cmd = ['gnome-terminal','--geometry=174x5', '--', 'bash', '-c','jstest /dev/input/js0; exec bash'],
+            # output = 'screen',
       )
 
       controller_conection = Node(
@@ -29,7 +25,6 @@ def generate_launch_description():
         )
       
       ld.add_action(controller_listener)
-      ld.add_action(rqt)
       ld.add_action(jstest)
       ld.add_action(controller_conection)
 

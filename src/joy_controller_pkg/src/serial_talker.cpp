@@ -26,9 +26,9 @@ private:
     {
         boost::system::error_code ec;
 
-        std::string message = std::to_string(msg->lx) + ":" + std::to_string(msg->ly) + ":" + std::to_string(msg->rx) + ":" + std::to_string(msg->ry) + "|";
-        boost::asio::write(serial, buffer(message), ec);
-        RCLCPP_INFO(this->get_logger(), "send:%s", message.c_str());
+        std::string joy_msg = "n:" + std::to_string(msg->lx) + ":" + std::to_string(msg->ly) + ":" + std::to_string(msg->rx) + ":" + std::to_string(msg->ry) + "|";
+        boost::asio::write(serial, buffer(joy_msg), ec);
+        RCLCPP_INFO(this->get_logger(), "send:%s", joy_msg.c_str());
 
         for (size_t i = 0; i < msg->buttons.size(); i++)
         {

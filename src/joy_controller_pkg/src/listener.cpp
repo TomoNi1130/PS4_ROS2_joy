@@ -46,7 +46,7 @@ private:
             message.buttons[12] = true;
         if (msg->axes[7] == 1)
             message.buttons[13] = true;
-        if (msg->axes[7] == -11)
+        if (msg->axes[7] == -1)
             message.buttons[14] = true;
         this->publisher_->publish(message);
     }
