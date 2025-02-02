@@ -23,7 +23,7 @@ private:
     void topic_callback(sensor_msgs::msg::Joy::UniquePtr msg)
     {
         auto message = test_interface::msg::Controller();
-        RCLCPP_INFO(this->get_logger(), "pub: '%d'", msg->buttons[0]);
+        RCLCPP_INFO(this->get_logger(), "送ってるぜ");
 
         message.lx = msg->axes[0];
         message.ly = msg->axes[1];

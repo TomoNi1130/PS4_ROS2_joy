@@ -13,7 +13,7 @@ def generate_launch_description():
       )
 
       msg_show = ExecuteProcess(
-            cmd = ['gnome-terminal','--geometry=10x22', '--', 'bash', '-c','cd ~/Documents/ROS2/test_ws && . install/setup.bash && ros2 topic echo controller_signal_load/controller_data; exec bash'],
+            cmd = ['gnome-terminal','--geometry=10x22', '--', 'bash', '-c','cd /home/tomoni11/Documents/ROS2/Products/ROS2_joy && . install/setup.bash && ros2 topic echo controller_signal_load/controller_data; exec bash'],
             output = 'screen',
       )
       
