@@ -18,7 +18,7 @@
 
 **button**:
 
-シリアルメッセージ　= {シリアルメッセージ}　+ "pressing" + "|" or + "no_pressing" + "|"
+シリアルメッセージ　= {シリアルメッセージ}　+ ":pressing" + "|" or + ":no_pressing" + "|"
 | 押されているボタン | シリアルメッセージ |
 |--------------------|--------------------|
 | `X`                | `cross`            |
@@ -48,8 +48,8 @@ colcon build --packages-select ros2-jazzy-joy
 . install/setup
 
 #コントローラーを接続（確認　ls /dev/input/js0 ）
-ros2 launch {pkg_name} Pilot.launch.py
+ros2 launch joy_controller_pkg Pilot.launch.py
 ##or
 #シリアルを接続
-ros2 launch {pkg_name} Robot.launch.py
+ros2 launch joy_controller_pkg Robot.launch.py
 ```
