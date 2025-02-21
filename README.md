@@ -44,7 +44,7 @@
 sudo apt install ros-jazzy-joy*
 
 #ワークスペース内で
-colcon build --packages-select ros2-jazzy-joy
+colcon build
 . install/setup
 
 #コントローラーを接続（確認　ls /dev/input/js0 ）
