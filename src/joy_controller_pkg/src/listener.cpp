@@ -14,6 +14,10 @@ public:
     Joy_Sub()
         : Node("Joy_Subscriver")
     {
+        rclcpp::QoS qos(10);
+        qos.reliable();    // 信頼性の高い通信
+        qos.keep_last(10); // 最後の10メッセージを保持
+
         subscription_ =
             this->create_subscription<sensor_msgs::msg::Joy>("joy", 10, std::bind(&Joy_Sub::topic_callback, this, _1));
         publisher_ = this->create_publisher<test_interface::msg::Controller>("controller_data", 10);

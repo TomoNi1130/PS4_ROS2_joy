@@ -16,6 +16,7 @@
   <depend>std_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>test_interface</depend>
+  <depend>python3-em</depend>
 
   <depend>ros2launch</depend>
 
