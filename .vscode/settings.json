@@ -1,4 +1,21 @@
 {
   "C_Cpp.errorSquiggles": "disabled",
-  "cmake.ignoreCMakeListsMissing": true
+  "cmake.ignoreCMakeListsMissing": true,
+  "files.associations": {
+    "*.ipp": "cpp",
+    "system_error": "cpp",
+    "chrono": "cpp",
+    "functional": "cpp"
+  },
+  "python.autoComplete.extraPaths": [
+    "/home/tomoni11/Documents/ROS2/ROS2_PRODCTS/PS4_ROS2_joy/install/test_interface/lib/python3.10/site-packages",
+    "/opt/ros/jazzy/lib/python3.12/site-packages"
+  ],
+  "python.analysis.extraPaths": [
+    "/home/tomoni11/Documents/ROS2/ROS2_PRODCTS/PS4_ROS2_joy/install/test_interface/lib/python3.10/site-packages",
+    "/opt/ros/jazzy/lib/python3.12/site-packages"
+  ],
+  "C_Cpp.codeAnalysis.clangTidy.checks.disabled": [
+    "clang-diagnostic-error"
+  ]
 }

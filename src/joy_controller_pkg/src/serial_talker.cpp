@@ -1,9 +1,10 @@
-
 #include "rclcpp/rclcpp.hpp"
 #include "test_interface/msg/controller.hpp"
 
 #include <boost/asio.hpp>
 #include <array>
+#include <memory>
+#include <chrono>
 
 using namespace boost::asio;
 
@@ -17,39 +18,55 @@ public:
         serial.set_option(serial_port_base::baud_rate(115200));                     // ボーレート設定
         subscription_ = this->create_subscription<test_interface::msg::Controller>( // CHANGE
             "controller_data", 10, std::bind(&serial_talker::topic_callback, this, _1));
+        timer_ = this->create_wall_timer(
+            std::chrono::milliseconds(100),std::bind(&serial_talker::send_data_periodically, this));
     }
 
 private:
     io_service io;
     serial_port serial;
-    void topic_callback(const test_interface::msg::Controller::UniquePtr msg)
+
+    std::string joy_msg;
+    std::string key_message[15];
+    void send_data_periodically()
     {
         boost::system::error_code ec;
-
-        std::string joy_msg = "n:" + std::to_string(msg->lx) + ":" + std::to_string(msg->ly) + ":" + std::to_string(msg->rx) + ":" + std::to_string(msg->ry) + "|";
         boost::asio::write(serial, buffer(joy_msg), ec);
-        RCLCPP_INFO(this->get_logger(), "send:%s", joy_msg.c_str());
+        for(int i = 0;i < 15; i++)
+        {
+            boost::asio::write(serial, buffer(key_message[i]), ec);
+        }
+        if (ec)
+            {
+                RCLCPP_ERROR(this->get_logger(), "Error writing to serial port: %s", ec.message().c_str());
+            }
+            else
+            {
+                RCLCPP_INFO(this->get_logger(), "send:%s", joy_msg.c_str());
+                RCLCPP_INFO(this->get_logger(), "send:%s", key_message[1].c_str());
+            }
+    }
 
-        for (size_t i = 0; i < msg->buttons.size(); i++)
+     void topic_callback(const test_interface::msg::Controller::UniquePtr msg)
+    {
+        
+        joy_msg = "n:" + std::to_string(msg->lx) + ":" + std::to_string(msg->ly) + ":" + std::to_string(msg->rx) + ":" + std::to_string(msg->ry) + "|";
+        
+        for (int i = 0; i < 15; i++)
         {
             if (msg->buttons[i])
             {
-                std::string message = keys[i] + ":pressing" + "|";
-                boost::asio::write(serial, buffer(message), ec);
+                key_message[i] = keys[i] + ":p" + "|";
             }
             else if (!msg->buttons[i])
             {
-                std::string message = keys[i] + ":no_pressing" + "|";
-                boost::asio::write(serial, buffer(message), ec);
+                key_message[i] = keys[i] + ":no_p" + "|";
             }
         }
-        if (ec)
-        {
-            RCLCPP_ERROR(this->get_logger(), "Error writing to serial port: %s", ec.message().c_str());
-        }
+        
     }
-    std::array<std::string, 15> keys = {"cross", "circle", "triangle", "square", "L1", "R1", "L2", "R2", "SHARE", "OPTIONS", "PS", "left", "right", "up", "down"};
-
+    std::array<std::string, 15> keys = {"cr", "ci", "tri", "sq", "L1", "R1", "L2", "R2", "SH", "OP", "PS", "l", "r", "u", "d"};
+ 
     /*
     keys[0] = "cross";
     keys[1] = "circle";
@@ -68,6 +85,7 @@ private:
     keys[14] = "down";
     */
     rclcpp::Subscription<test_interface::msg::Controller>::SharedPtr subscription_;
+    rclcpp::TimerBase::SharedPtr timer_;
 };
 
 int main(int argc, char *argv[])
