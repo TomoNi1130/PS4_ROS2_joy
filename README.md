@@ -18,29 +18,31 @@
 
 **button**:
 
-シリアルメッセージ　= {シリアルメッセージ}　+ ":pressing" + "|" or + ":no_pressing" + "|"
+シリアルメッセージ　= {シリアルメッセージ}　+ ":p" + "|" or + ":no_p" + "|"
 | 押されているボタン | シリアルメッセージ |
 |--------------------|--------------------|
-| `X`                | `cross`            |
-| `O`                | `circle`           |
-| `▲`                | `triangle`         |
-| `■`                | `square`           |
+| `X`                | `cr`               |
+| `O`                | `ci`               |
+| `▲`                | `tri`              |
+| `■`                | `sq`               |
 | `L1`               | `L1`               |
 | `R1`               | `R1`               |
 | `L2`               | `L2`               |
 | `R2`               | `R2`               |
-| `SHARE`            | `SHARE`            |
-| `OPTION`           | `OPTION`           |
+| `SHARE`            | `SH`               |
+| `OPTION`           | `OP`               |
 | `PS`               | `PS`               |
-| `←`                | `left`             |
-| `→`                | `right`            |
-| `↑`                | `up`               |
-| `↓`                | `down`             |
+| `←`                | `l`                |
+| `→`                | `r`                |
+| `↑`                | `u`                |
+| `↓`                | `d`                |
 
 ## 使用方法
 
 ```bash
 # パッケージのインストール
+sudo apt install joystick
+sudo apt install jstest-gtk
 sudo apt install ros-jazzy-joy*
 
 #ワークスペース内で
