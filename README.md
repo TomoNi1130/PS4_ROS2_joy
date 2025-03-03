@@ -1,6 +1,7 @@
 # PS4_ROS2_joy
 
 このパッケージは、PS4コントローラー用にros2-jazzy-joyを使用して、コントローラーの信号をシリアルにするROS2パッケージ。Pilot側とRobot側に分かれており、各側に対応したLaunchファイルがある。
+バスづまり対策のため送信間隔をo.1秒ごとにしている。
 
 ## 概要
 
@@ -12,35 +13,38 @@
 
 ## シリアル対応表
 **stick**:
+
 シリアルメッセージ = "n;" + {L-x} + ":" + {L-y} + ":" + {R-x} + ":" + {R-y} + "|"
 
 -1 =< {LR-xy}　=< 1
 
 **button**:
 
-シリアルメッセージ　= {シリアルメッセージ}　+ ":pressing" + "|" or + ":no_pressing" + "|"
+シリアルメッセージ　= {シリアルメッセージ}　+ ":p" + "|" or + ":no_p" + "|"
 | 押されているボタン | シリアルメッセージ |
 |--------------------|--------------------|
-| `X`                | `cross`            |
-| `O`                | `circle`           |
-| `▲`                | `triangle`         |
-| `■`                | `square`           |
+| `X`                | `cr`               |
+| `O`                | `ci`               |
+| `▲`                | `tri`              |
+| `■`                | `sq`               |
 | `L1`               | `L1`               |
 | `R1`               | `R1`               |
 | `L2`               | `L2`               |
 | `R2`               | `R2`               |
-| `SHARE`            | `SHARE`            |
-| `OPTION`           | `OPTION`           |
+| `SHARE`            | `SH`               |
+| `OPTION`           | `OP`               |
 | `PS`               | `PS`               |
-| `←`                | `left`             |
-| `→`                | `right`            |
-| `↑`                | `up`               |
-| `↓`                | `down`             |
+| `←`                | `l`                |
+| `→`                | `r`                |
+| `↑`                | `u`                |
+| `↓`                | `d`                |
 
 ## 使用方法
 
 ```bash
 # パッケージのインストール
+sudo apt install joystick
+sudo apt install jstest-gtk
 sudo apt install ros-jazzy-joy*
 
 #ワークスペース内で
