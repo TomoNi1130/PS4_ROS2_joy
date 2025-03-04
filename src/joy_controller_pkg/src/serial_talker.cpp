@@ -65,7 +65,8 @@ private:
         else
         {
             RCLCPP_INFO(this->get_logger(), "send:%s", joy_msg.c_str());
-            RCLCPP_INFO(this->get_logger(), "send:%s", key_message[17].c_str());
+            for(int i = 0;i < 17;i++)
+                RCLCPP_INFO(this->get_logger(), "send:%s", key_message[i].c_str());
         }
     }
     void topic_callback(const test_interface::msg::Controller::UniquePtr msg)
@@ -116,6 +117,8 @@ private:
     keys[12] = "right";
     keys[13] = "up";
     keys[14] = "down";
+    keys[15] = "L3";
+    keys[16] = "R3";
     */
     rclcpp::Subscription<test_interface::msg::Controller>::SharedPtr subscription_;
     rclcpp::TimerBase::SharedPtr timer_;

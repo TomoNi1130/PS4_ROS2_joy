@@ -44,16 +44,16 @@ private:
         message.buttons[8] = msg->buttons[8];
         message.buttons[9] = msg->buttons[9];
         message.buttons[10] = msg->buttons[10];
-        if (msg->axes[6] == 1)
-            message.buttons[11] = true;
-        if (msg->axes[6] == -1)
-            message.buttons[12] = true;
-        if (msg->axes[7] == 1)
-            message.buttons[13] = true;
-        if (msg->axes[7] == -1)
-            message.buttons[14] = true;
-        message.buttons[11] = msg->buttons[15];
-        message.buttons[12] = msg->buttons[16];
+        if(msg->axes[6] > 0)
+         message.buttons[11] = true;
+         if(msg->axes[6] < 0)
+         message.buttons[12] = true;
+         if(msg->axes[7] > 0)
+         message.buttons[13] = true;
+         if(msg->axes[7] < 0)
+         message.buttons[14] = true;
+        message.buttons[15] = msg->buttons[11];
+        message.buttons[16] = msg->buttons[12];
         this->publisher_->publish(message);
     }
     rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr subscription_;
